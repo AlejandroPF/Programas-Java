@@ -21,7 +21,11 @@ public class Cronometro extends JFrame implements ActionListener {
     private JLabel label = new JLabel();
     private JButton boton = new JButton("Parar");
     private boolean encendido = true;
-    int h=0,m=0,s=0;
+    int h = 0, m = 0, s = 0;
+
+    /**
+     * Inicia la ventana del cronometro
+     */
     public Cronometro() {
         Image icon = new ImageIcon(getClass().getResource("icon.png")).getImage();
         setIconImage(icon);
@@ -35,6 +39,11 @@ public class Cronometro extends JFrame implements ActionListener {
         temporizador(encendido);
     }
 
+    /**
+     * Arranca o para el cronometro
+     *
+     * @param val (Boolean) 'true' para arrancar
+     */
     public void temporizador(boolean val) {
         TimerTask tt = new TimerTask() {
             public void run() {
@@ -48,6 +57,9 @@ public class Cronometro extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Coloca todos los elementos en la ventana
+     */
     public void colocaElementos() {
         label.setBounds(95, 20, 150, 50);
         label.setText("1");
@@ -60,39 +72,46 @@ public class Cronometro extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Cambia el tiempo del cronometro
+     */
     public void cambiaHora() {
-        String horas="", minutos="", segundos="",txt;
+        String horas = "", minutos = "", segundos = "", txt;
         s++;
-        if(s>59){
-            s=0;
+        if (s > 59) {
+            s = 0;
             m++;
         }
-        if(m>59){
-            m=0;
+        if (m > 59) {
+            m = 0;
             h++;
         }
-        if(s<10){
-            segundos="0"+s;
-        }else {
-            segundos=""+s;
+        if (s < 10) {
+            segundos = "0" + s;
+        } else {
+            segundos = "" + s;
         }
-        if(m<10){
-            minutos="0"+m;
-        }else{
-            minutos=""+m;
+        if (m < 10) {
+            minutos = "0" + m;
+        } else {
+            minutos = "" + m;
         }
-        if(h<10){
-            horas="0"+h;
-        }else{
-            horas=""+h;
+        if (h < 10) {
+            horas = "0" + h;
+        } else {
+            horas = "" + h;
         }
-        txt=horas + ":" + minutos + ":" + segundos;
+        txt = horas + ":" + minutos + ":" + segundos;
         label.setText(txt);
         System.out.println(txt);
-        
 
     }
 
+    /**
+     * Ejecuta el programa
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         new Cronometro();
     }
